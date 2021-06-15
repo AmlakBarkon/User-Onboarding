@@ -1,14 +1,13 @@
 import React, {useState, useEffect} from 'react'
 import './App.css'
 import * as Yup from 'yup'
-import axios from 'axios'
-const url = "https://reqres.in/api/users"
+
 const schema = Yup.object().shape({
     user: Yup.string().required("User is required").min(6,"user need to be 6 chars"),
-    star: Yup.string().oneOf(['wars', 'trek'], 'you must select wars or trek'),
-    language: Yup.string().oneOf(['1','2','3'], 'you must choose a language'),
-    agree: Yup.boolean().oneOf([true],'Pick one'),
-    password: Yup.string().required("password").min(4,"four min")
+     star: Yup.string().oneOf(['wars', 'trek'], 'you must select wars or trek'),
+     language: Yup.string().oneOf(['1','2','3'], 'you must choose a language'),
+    //  agree: Yup.boolean().oneOf([true, false],'Pick one')
+   
 })
 function App (){
    const [form, setForm ] = useState({
@@ -28,10 +27,9 @@ function App (){
     
  }
  useEffect(() =>{
-    
-     schema.isValid(form).then(valid=> setDisabled(!valid))
-     
- }, [form])
+  console.log(schema.isValid(form).then(valid=>setDisabled(!valid)))
+  
+}, [form])
     return (
         <div className="App">
             <form>
